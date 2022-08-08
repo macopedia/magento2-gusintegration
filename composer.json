@@ -1,0 +1,28 @@
+{
+    "name": "macopedia/magento2-gusintegration",
+    "description": "Magento 2 module responsible for integration with GUS API",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Jakub Idziak",
+            "email": "extensions@macopedia.pl"
+        },
+        {
+            "name": "Maksymilian Strzyżewski",
+            "email": "m.strzyzewski@macopedia.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "gusapi/gusapi": "^5.3"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Macopedia\\GusIntegration\\": ""
+        }
+    }
+}

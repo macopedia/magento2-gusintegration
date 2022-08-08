@@ -1,0 +1,70 @@
+<?php
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Magento\Customer\Block\Form\Register $block */
+/** @var Magento\Customer\Helper\Address $addressHelper */
+$addressHelper = $block->getData('addressHelper');
+/** @var \Macopedia\GusIntegration\ViewModel\CompanyDataViewModel $viewModel */
+$viewModel = $block->getViewModel();
+?>
+
+<?php if ($addressHelper->isVatAttributeVisible()): ?>
+    <fieldset class="fieldset address">
+        <legend class="legend"><span><?= $escaper->escapeHtml(__('Data from GUS')) ?></span></legend><br>
+        <div class="field gus_vat_id">
+            <label class="label" for="gus_vat_id">
+                <span><?= /* @noEscape */ __('VAT Number') ?></span>
+            </label>
+            <div class="control">
+                <input type="text"
+                       name="gus_vat_id"
+                       value=""
+                       title="<?= /* @noEscape */ __('VAT Number') ?>"
+                       class="input-text"
+                       id="gus_vat_id">
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="button" class="action primary" id="gus-data-btn" onclick="loadCompanyDataFromGus();"
+                    title="<?= $escaper->escapeHtmlAttr(__('Load company data from GUS')) ?>">
+                <span><?= $escaper->escapeHtml(__('Load company data from GUS')) ?></span>
+            </button>
+        </div>
+    </div>
+    <script type="text/javascript">
+        document.getElementById('gus_vat_id').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                loadCompanyDataFromGus();
+                event.preventDefault();
+                return false;
+            }
+        });
+        function loadCompanyDataFromGus() {
+            require(['jquery',], function($) {
+                const ajaxUrl = "<?= $escaper->escapeUrl($viewModel->getCompanyDataPostActionUrl()); ?>";
+                $.ajax({
+                    url: ajaxUrl,
+                    type: 'POST',
+                    dataType: 'json',
+                    cache: false,
+                    showLoader: true,
+                    data: {
+                        gus_vat_id: $('#gus_vat_id').val(),
+                    },
+                    success: function(response) {
+                        if (!$.isEmptyObject(response.company_data)) {
+                            $.each(response.company_data, function(index, value) {
+                                $('#' + index).val(value).trigger('change');
+                            });
+                            $('#vat_id').val($('#gus_vat_id').val());
+                        }
+                    }
+                });
+                $(window).scrollTop(0);
+                //prevent to validate whole registration form
+                return false;
+            });
+        }
+    </script>
+<?php endif; ?>

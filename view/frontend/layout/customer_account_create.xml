@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <referenceBlock name="customer_form_register">
+        <arguments>
+            <argument name="show_address_fields" xsi:type="boolean">true</argument>
+        </arguments>
+        <container name="fieldset.create.info.additional" as="fieldset_create_info_additional"/>
+    </referenceBlock>
+    <referenceContainer name="fieldset.create.info.additional">
+        <block class="Magento\Customer\Block\Form\Register" name="load_company_data_from_gus" template="Macopedia_GusIntegration::customer/gus-data.phtml">
+            <arguments>
+                <argument name="view_model" xsi:type="object">Macopedia\GusIntegration\ViewModel\CompanyDataViewModel</argument>
+            </arguments>
+        </block>
+    </referenceContainer>
+</layout>

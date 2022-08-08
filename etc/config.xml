@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <gus>
+            <general>
+                <sandbox>1</sandbox>
+                <user_id>abcde12345abcde12345</user_id>
+            </general>
+        </gus>
+    </default>
+</config>

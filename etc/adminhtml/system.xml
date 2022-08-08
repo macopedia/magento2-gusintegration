@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="macopedia" translate="label" sortOrder="999">
+            <label>Macopedia</label>
+        </tab>
+        <section id="gus" translate="label" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1">
+            <label>API GUS</label>
+            <tab>macopedia</tab>
+            <resource>Magento_Config::config</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="sandbox" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Is sandbox account</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="user_id" translate="label" type="text" sortOrder="60" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>User ID</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

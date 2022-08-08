@@ -55,3 +55,4 @@ For production environment:
 
 ## Screenshots
 
+![data-from-gus-registration-form](https://user-images.githubusercontent.com/7571848/183442532-6717e9c7-8a25-498c-9034-64862c7be06c.png)
